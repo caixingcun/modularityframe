@@ -1,0 +1,9 @@
+ext {
+    android = [compileSdkVersion: 26,
+               buildToolsVersion: "26.0.2"]
+
+    dependencies = [
+            "arouter-api"     : 'com.alibaba:arouter-api:1.5.1',//ARouter
+            "arouter-compiler": 'com.alibaba:arouter-compiler:1.5.1'
+    ]
+}

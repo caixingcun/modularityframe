@@ -1,0 +1,101 @@
+import java.security.InvalidKeyException
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.example.modularitylearn"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output -> outputFileName = new File("modularity" + "_" + buildType.name + ".apk")
+            }
+    }
+    signingConfigs {
+
+        release {
+            try {
+                storeFile file("test.jks")
+                storePassword properties.getProperty("release_keystore_pass")
+                keyAlias properties.getProperty("release_key_alias")
+                keyPassword properties.getProperty("release_key_pass")
+            }
+            catch (ex) {
+                throw new InvalidKeyException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+        debug {
+            try {
+                storeFile file("test.jks")
+                storePassword properties.getProperty("debug_keystore_pass")
+                keyAlias properties.getProperty("debug_key_alias")
+                keyPassword properties.getProperty("debug_key_pass")
+            }
+            catch (ex) {
+                throw new InvalidKeyException("You should define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.")
+            }
+        }
+
+    }
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            minifyEnabled false
+            debuggable false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            minifyEnabled false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation rootProject.ext.dependencies["arouter-api"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    implementation project(':commonlib')
+
+    if (homeModule.toBoolean()) {
+        implementation project(':home')
+    }
+    if (chatModule.toBoolean()) {
+        implementation project(':chat')
+    }
+    if (categoryModule.toBoolean()) {
+        implementation project(':category')
+    }
+    if (mineModule.toBoolean()) {
+        implementation project(':mine')
+    }
+
+}
