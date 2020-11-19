@@ -13,6 +13,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getInjectLayoutId());
         ARouter.getInstance().inject(this);
+        initView();
+    }
+
+    protected  void initView(){
+
     }
 
     protected abstract int getInjectLayoutId();
