@@ -1,9 +1,21 @@
 ext {
-    android = [compileSdkVersion: 26,
-               buildToolsVersion: "26.0.2"]
+    android = [compileSdkVersion: 29,
+               buildToolsVersion: "29.0.3",
+               minSdkVersion    : 19,
+               targetSdkVersion : 29,
+               versionCode      : 1,
+               versionName      : "1.0.0",
+    ]
 
-    dependencies = [
-            "arouter-api"     : 'com.alibaba:arouter-api:1.5.1',//ARouter
-            "arouter-compiler": 'com.alibaba:arouter-compiler:1.5.1'
+    dependencies  = [
+            "junit"             : 'junit:junit:4.12',
+            "androidx_ext_junit": 'androidx.test.ext:junit:1.1.2',
+            "espresso"          : 'androidx.test.espresso:espresso-core:3.3.0',
+
+            "arouter-api"       : 'com.alibaba:arouter-api:1.5.1',//ARouter
+            "arouter-compiler"  : 'com.alibaba:arouter-compiler:1.5.1',
+            "constraintlayout"  : 'androidx.constraintlayout:constraintlayout:2.0.4',
+            "appcompat"         : 'androidx.appcompat:appcompat:1.2.0'
+
     ]
 }
