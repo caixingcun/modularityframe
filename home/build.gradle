@@ -19,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // JAVA ARouter
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
@@ -33,6 +34,16 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            if (chatModule.toBoolean()) {
+                manifest.srcFile 'src/main/moduleManifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -43,7 +54,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    // JAVA ARouter
     implementation rootProject.ext.dependencies["arouter-api"]
     annotationProcessor  rootProject.ext.dependencies["arouter-compiler"]
     implementation project(':commonlib')

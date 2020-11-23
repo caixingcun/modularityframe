@@ -69,6 +69,10 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    compileOptions{
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
 }
 
@@ -82,7 +86,6 @@ dependencies {
 
     implementation rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-
     implementation project(':commonlib')
 
     if (homeModule.toBoolean()) {
