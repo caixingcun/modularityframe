@@ -1,2 +1,2 @@
-include ':app', ':home', ':mine', ':chat', ':category', ':commonlib'
+include ':app', ':home', ':mine', ':chat', ':category', ':commonlib', ':home_export', ':category_export', ':chat_export', ':mine_export'
 rootProject.name='ModularityLearn'

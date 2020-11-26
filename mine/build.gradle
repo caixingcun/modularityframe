@@ -48,5 +48,7 @@ dependencies {
     // JAVA ARouter
     implementation rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    api project(':mine_export')
     implementation project(':commonlib')
 }

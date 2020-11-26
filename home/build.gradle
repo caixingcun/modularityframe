@@ -58,4 +58,5 @@ dependencies {
     implementation rootProject.ext.dependencies["arouter-api"]
     annotationProcessor  rootProject.ext.dependencies["arouter-compiler"]
     implementation project(':commonlib')
+    api project(':home_export')  //组合调试 依赖 export 接口 即可
 }

@@ -29,11 +29,11 @@ android {
         }
     }
 
-    sourceSets{
-        main{
-            if(categoryModule.toBoolean()){
+    sourceSets {
+        main {
+            if (categoryModule.toBoolean()) {
                 manifest.srcFile 'src/main/moduleManifest/AndroidManifest.xml'
-            }else{
+            } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
         }
@@ -44,7 +44,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -62,6 +62,7 @@ dependencies {
     implementation rootProject.ext.dependencies["arouter-api"]
     kapt rootProject.ext.dependencies["arouter-compiler"]
 
+    api project(':category_export')
     implementation project(':commonlib')
-
+    implementation project(':home_export')
 }

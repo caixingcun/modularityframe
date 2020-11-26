@@ -1,13 +1,12 @@
 package com.example.mine;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.commonlib.BaseActivity;
 
-@Route(path = "/mine/MineActivity")
+import static com.example.mine_export.router.MineRouterTable.ACTIVITY_MINE;
+
+@Route(path = ACTIVITY_MINE)
 public class MineActivity extends BaseActivity {
 
 

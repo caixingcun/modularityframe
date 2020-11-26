@@ -1,4 +1,5 @@
 import java.security.InvalidKeyException
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -69,7 +70,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -92,6 +93,7 @@ dependencies {
     if (homeModule.toBoolean()) {
         implementation project(':home')
     }
+
     if (chatModule.toBoolean()) {
         implementation project(':chat')
     }

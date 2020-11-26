@@ -4,7 +4,9 @@ package com.example.home;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.commonlib.BaseActivity;
 
-@Route(path = "/home/HomeActivity")
+import static com.example.home_export.router.HomeRouterTable.PATH_ACTIVITY_HOME;
+
+@Route(path = PATH_ACTIVITY_HOME)
 public class HomeActivity extends BaseActivity {
 
     @Override
